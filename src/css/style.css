@@ -1,0 +1,124 @@
+@font-face {
+    font-family: Asana-Math;
+    src: url(../fonts/Asana-Math/Asana-Math.otf);
+}
+
+.dropdown-item.active {
+    background: #d9d9d9;
+}
+
+.sub {
+    top: 10px;
+}
+
+.param {
+    display: flex;
+    justify-content: space-around;
+}
+
+.param__element {
+    display: flex;
+    align-items: center;
+}
+
+.param__calc {
+    min-width: 20px;
+    margin: 0 7px;
+    padding-top: 3px;
+}
+
+.param__calc div {
+    display: flex;
+    justify-content: center;
+}
+
+.param__numb {
+    border-bottom: solid 1px;
+}
+
+.btn-run {
+    width: 140px;
+}
+
+.input-fields {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    position: relative;
+    border: solid #dee2e6;
+    border-width: 1px;
+}
+
+.form {
+    margin-top: 80px;
+}
+
+section + section {
+    margin-top: 50px;
+}
+
+.solution {
+    font-family: Asana-Math, serif;
+    font-style: italic;
+    font-size: 21px;
+}
+
+.formula {
+    display: flex;
+    justify-content: center;
+}
+
+.formula--space {
+    align-items: center;
+}
+
+.formula--space span {
+    margin: 0 8px;
+}
+
+.formula--desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-input {
+    border-color: #dc3545;
+}
+
+.container + .container {
+    margin-top: 30px;
+}
+
+body {
+    padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+    .form {
+        margin-top: 12px;
+    }
+
+    .param {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .param + .param {
+        margin-top: 20px;
+    }
+
+    .formula--space {
+        flex-direction: column;
+    }
+
+    .solution {
+        font-size: 18px;
+    }
+
+    .form .btn{
+        font-size: 14px;
+    }
+}

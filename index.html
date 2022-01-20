@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Лабораторная работа</title>
+    <link rel="stylesheet" href="src/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <section class="form">
+        <div class="container">
+            <div class="input-fields">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex">
+                            <div class="input-group mb-3">
+                                <button class="btn btn-primary js-example1">Пример 1</button>
+                                <button class="btn btn-primary js-example2">Пример 2</button>
+                                <button class="btn btn-primary js-example3">Пример 3</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">T<sub>a</sub> =</span>
+                            <input type="text" class="form-control" id="paramA" value="0">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" id="js-paramSelectorBValue" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                T<sub>b</sub>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu js-paramSelectorB">
+                                <li>
+                                    <a class="dropdown-item active" id="selectParamTb" href="#">
+                                        T<sub>b</sub>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" id="selectParamQb" href="#">
+                                        q
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" id="selectParamTinf" href="#">
+                                        T<sub>∞</sub>
+                                    </a>
+                                </li>
+                            </ul>
+                            <label class="input-group-text">=</label>
+                            <input type="text" class="form-control" id="paramB" value="15">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">N =</span>
+                            <input type="text" class="form-control" id="paramN" value="6">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">L =</span>
+                            <input type="text" class="form-control" id="paramL" value="5">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">S =</span>
+                            <input type="text" class="form-control" id="paramS" value="2">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">k =</span>
+                            <input type="text" class="form-control" id="paramK" value="1">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 js-paramTinfActive d-none">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">h =</span>
+                            <input type="text" class="form-control" id="paramH" value="5">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class="btn btn-primary js-run btn-run">Решить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="solution">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="typography" id="desc1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <div class="d-flex flex-column" id="matrixT"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="typography" id="desc2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex flex-column" id="matrixPQ"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="typography" id="desc3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center">
+                        <div class="d-flex flex-column" id="answerT"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="src/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="src/js/script.js"></script>
+</body>
+</html>
