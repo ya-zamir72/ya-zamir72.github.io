@@ -25,9 +25,67 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col">
+                        <div class="d-flex">
+                            <div class="input-group mb-3">
+                                <button class="btn btn-primary js-example4">Пример 4</button>
+                                <button class="btn btn-primary js-example5">Пример 5</button>
+                                <button class="btn btn-primary js-example6">Пример 6</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-6 col-12">
                         <div class="input-group mb-3">
-                            <span class="input-group-text">T<sub>a</sub> =</span>
+                            <button class="btn btn-outline-secondary" id="js-paramSelectorS" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                S = const
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu js-paramSelectorS">
+                                <li>
+                                    <a class="dropdown-item active" id="selectParamSConst" href="#">
+                                        S = const
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" id="selectParamSFunc" href="#">
+                                        S = S<sub>c</sub> + S<sub>p</sub>T
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" id="js-paramSelectorAValue" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                T<sub>a</sub>
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu js-paramSelectorA">
+                                <li>
+                                    <a class="dropdown-item active" id="selectParamTa" href="#">
+                                        T<sub>a</sub>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" id="selectParamQa" href="#">
+                                        q<sub>a</sub>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" id="selectParamTinfA" href="#">
+                                        T<sub>∞</sub>
+                                    </a>
+                                </li>
+                            </ul>
+                            <label class="input-group-text">=</label>
                             <input type="text" class="form-control" id="paramA" value="0">
                         </div>
                     </div>
@@ -47,11 +105,11 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" id="selectParamQb" href="#">
-                                        q
+                                        q<sub>b</sub>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" id="selectParamTinf" href="#">
+                                    <a class="dropdown-item" id="selectParamTinfB" href="#">
                                         T<sub>∞</sub>
                                     </a>
                                 </li>
@@ -62,7 +120,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-12">
+                    <div class="col-lg-6 col-12 paramN">
                         <div class="input-group mb-3">
                             <span class="input-group-text">N =</span>
                             <input type="text" class="form-control" id="paramN" value="6">
@@ -74,9 +132,15 @@
                             <input type="text" class="form-control" id="paramL" value="5">
                         </div>
                     </div>
+                    <div class="col-lg-6 col-12 paramSc d-none">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">S<sub>c</sub> =</span>
+                            <input type="text" class="form-control" id="paramSc" value="5">
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-12">
+                    <div class="col-lg-6 col-12 paramS">
                         <div class="input-group mb-3">
                             <span class="input-group-text">S =</span>
                             <input type="text" class="form-control" id="paramS" value="2">
@@ -86,6 +150,12 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text">k =</span>
                             <input type="text" class="form-control" id="paramK" value="1">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 paramSp d-none">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">S<sub>p</sub> =</span>
+                            <input type="text" class="form-control" id="paramSp" value="1">
                         </div>
                     </div>
                     <div class="col-lg-6 col-12 js-paramTinfActive d-none">

@@ -3,24 +3,60 @@ window.onload = function () {
     document.querySelector('.js-run').addEventListener('click', event => {
         const paramA = parseFloat(document.querySelector('#paramA').value);
         const paramB = parseFloat(document.querySelector('#paramB').value);
-        const paramN = parseFloat(document.querySelector('#paramN').value);
+        let paramN = parseFloat(document.querySelector('#paramN').value);
         const paramL = parseFloat(document.querySelector('#paramL').value);
         const paramS = parseFloat(document.querySelector('#paramS').value);
         const paramK = parseFloat(document.querySelector('#paramK').value);
+        const paramAType = document.querySelector('.js-paramSelectorA li a.active').id;
         const paramBType = document.querySelector('.js-paramSelectorB li a.active').id;
+        const paramSType = document.querySelector('.js-paramSelectorS li a.active').id;
         let check = false;
 
 
         if (isNaN(paramA)) { document.querySelector('#paramA').classList.add('error-input'); check = true; } else document.querySelector('#paramA').closest('div').classList.remove('error-input');
         if (isNaN(paramB)) { document.querySelector('#paramB').classList.add('error-input'); check = true; } else document.querySelector('#paramB').closest('div').classList.remove('error-input');
-        if (isNaN(paramN)) { document.querySelector('#paramN').classList.add('error-input'); check = true; } else document.querySelector('#paramN').closest('div').classList.remove('error-input');
         if (isNaN(paramL)) { document.querySelector('#paramL').classList.add('error-input'); check = true; } else document.querySelector('#paramL').closest('div').classList.remove('error-input');
-        if (isNaN(paramS)) { document.querySelector('#paramS').classList.add('error-input'); check = true; } else document.querySelector('#paramS').closest('div').classList.remove('error-input');
         if (isNaN(paramK)) { document.querySelector('#paramK').classList.add('error-input'); check = true; } else document.querySelector('#paramK').closest('div').classList.remove('error-input');
 
+        console.log(paramSType);
+
+        if (paramSType === 'selectParamSFunc') {
+            paramN = 6;
+        }
 
         let pqMethod = new PQMethod(paramN, paramK, paramS, paramL);
-        pqMethod.Ta = paramA;
+
+        switch (paramSType) {
+            case 'selectParamSConst':
+                if (isNaN(paramN)) { document.querySelector('#paramN').classList.add('error-input'); check = true; } else document.querySelector('#paramN').closest('div').classList.remove('error-input');
+                if (isNaN(paramS)) { document.querySelector('#paramS').classList.add('error-input'); check = true; } else document.querySelector('#paramS').closest('div').classList.remove('error-input');
+                break;
+            case 'selectParamSFunc':
+                const paramSc = parseFloat(document.querySelector('#paramSc').value);
+                const paramSp = parseFloat(document.querySelector('#paramSp').value);
+                if (isNaN(paramSc)) { document.querySelector('#paramSc').classList.add('error-input'); check = true; } else document.querySelector('#paramSc').closest('div').classList.remove('error-input');
+                if (isNaN(paramSp)) { document.querySelector('#paramSp').classList.add('error-input'); check = true; } else document.querySelector('#paramSp').closest('div').classList.remove('error-input');
+                pqMethod.Sc = paramSc;
+                pqMethod.Sp = paramSp;
+                break;
+        }
+
+
+        switch (paramAType) {
+            case 'selectParamTa':
+                pqMethod.Ta = paramA;
+                break;
+            case 'selectParamQa':
+                pqMethod.qa = paramA;
+                break;
+            case 'selectParamTinfA':
+                pqMethod.TinfA = paramA;
+                const paramH = parseFloat(document.querySelector('#paramH').value);
+                if (isNaN(paramH)) { document.querySelector('#paramH').classList.add('error-input'); check = true; } else document.querySelector('#paramH').closest('div').classList.remove('error-input');
+                pqMethod.h = paramH;
+                break;
+        }
+
         switch (paramBType) {
             case 'selectParamTb':
                 pqMethod.Tb = paramB;
@@ -28,8 +64,8 @@ window.onload = function () {
             case 'selectParamQb':
                 pqMethod.qb = paramB;
                 break;
-            case 'selectParamTinf':
-                pqMethod.Tinf = paramB;
+            case 'selectParamTinfB':
+                pqMethod.TinfB = paramB;
                 const paramH = parseFloat(document.querySelector('#paramH').value);
                 if (isNaN(paramH)) { document.querySelector('#paramH').classList.add('error-input'); check = true; } else document.querySelector('#paramH').closest('div').classList.remove('error-input');
                 pqMethod.h = paramH;
@@ -41,6 +77,11 @@ window.onload = function () {
         }
 
         pqMethod.Solved();
+
+        console.log(pqMethod.a);
+        console.log(pqMethod.b);
+        console.log(pqMethod.c);
+        console.log(pqMethod.d);
 
         const matrixTOut = document.querySelector('#matrixT');
         const desc1 = document.querySelector('#desc1');
@@ -142,6 +183,8 @@ window.onload = function () {
         document.querySelector('#paramK').value = 1;
         document.querySelector('#paramH').value = 1;
 
+        document.querySelector('#selectParamSConst').click();
+        document.querySelector('#selectParamTa').click();
         document.querySelector('#selectParamTb').click();
         document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
     });
@@ -155,6 +198,8 @@ window.onload = function () {
         document.querySelector('#paramK').value = 1;
         document.querySelector('#paramH').value = 1;
 
+        document.querySelector('#selectParamSConst').click();
+        document.querySelector('#selectParamTa').click();
         document.querySelector('#selectParamQb').click();
         document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
 
@@ -169,19 +214,113 @@ window.onload = function () {
         document.querySelector('#paramK').value = 5;
         document.querySelector('#paramH').value = 5;
 
-        document.querySelector('#selectParamTinf').click();
+        document.querySelector('#selectParamSConst').click();
+        document.querySelector('#selectParamTa').click();
+        document.querySelector('#selectParamTinfB').click();
         document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
 
     });
+
+    document.querySelector('.js-example4').addEventListener('click', event => {
+        document.querySelector('#paramA').value = 10;
+        document.querySelector('#paramB').value = 0;
+        document.querySelector('#paramN').value = 5;
+        document.querySelector('#paramL').value = 4;
+        document.querySelector('#paramS').value = 15;
+        document.querySelector('#paramK').value = 5;
+        document.querySelector('#paramH').value = 5;
+
+        document.querySelector('#selectParamSConst').click();
+        document.querySelector('#selectParamTb').click();
+        document.querySelector('#selectParamTinfA').click();
+        document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
+
+    });
+
+    document.querySelector('.js-example5').addEventListener('click', event => {
+        document.querySelector('#paramA').value = -10;
+        document.querySelector('#paramB').value = 25;
+        document.querySelector('#paramN').value = 6;
+        document.querySelector('#paramL').value = 5;
+        document.querySelector('#paramS').value = 2;
+        document.querySelector('#paramK').value = 1;
+        document.querySelector('#paramH').value = 5;
+
+        document.querySelector('#selectParamSConst').click();
+        document.querySelector('#selectParamQa').click();
+        document.querySelector('#selectParamTb').click();
+        document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
+
+    });
+
+    document.querySelector('.js-example6').addEventListener('click', event => {
+        document.querySelector('#paramA').value = 150;
+        document.querySelector('#paramB').value = 200;
+        document.querySelector('#paramL').value = 1;
+        document.querySelector('#paramSc').value = 2000;
+        document.querySelector('#paramSp').value = -100;
+        document.querySelector('#paramK').value = 120;
+
+        document.querySelector('#selectParamSFunc').click();
+        document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
+
+    });
+
+    document.querySelectorAll('.js-paramSelectorA li a').forEach(elem => elem.addEventListener('click', event => {
+        document.querySelectorAll('.js-paramSelectorA li a').forEach(elem => elem.classList.remove('active'));
+        elem.classList.add('active');
+        document.querySelector('#js-paramSelectorAValue').innerHTML = elem.innerHTML;
+        if (elem.id === 'selectParamTinfA') {
+            document.querySelector('.js-paramTinfActive').classList.remove('d-none');
+            document.querySelector('#selectParamTinfB').classList.add('d-none');
+        } else {
+            document.querySelector('.js-paramTinfActive').classList.add('d-none');
+            document.querySelector('#selectParamTinfB').classList.remove('d-none');
+        }
+    }));
 
     document.querySelectorAll('.js-paramSelectorB li a').forEach(elem => elem.addEventListener('click', event => {
         document.querySelectorAll('.js-paramSelectorB li a').forEach(elem => elem.classList.remove('active'));
         elem.classList.add('active');
         document.querySelector('#js-paramSelectorBValue').innerHTML = elem.innerHTML;
-        if (elem.id === 'selectParamTinf') {
+        if (elem.id === 'selectParamTinfB') {
             document.querySelector('.js-paramTinfActive').classList.remove('d-none');
+            document.querySelector('#selectParamTinfA').classList.add('d-none');
         } else {
             document.querySelector('.js-paramTinfActive').classList.add('d-none');
+            document.querySelector('#selectParamTinfA').classList.remove('d-none');
+        }
+    }));
+
+    document.querySelectorAll('.js-paramSelectorS li a').forEach(elem => elem.addEventListener('click', event => {
+        document.querySelectorAll('.js-paramSelectorS li a').forEach(elem => elem.classList.remove('active'));
+        elem.classList.add('active');
+        document.querySelector('#js-paramSelectorS').innerHTML = elem.innerHTML;
+        if (elem.id === 'selectParamSFunc') {
+            document.querySelector('.paramSc').classList.remove('d-none');
+            document.querySelector('.paramSp').classList.remove('d-none');
+
+            document.querySelector('.paramS').classList.add('d-none');
+            document.querySelector('.paramN').classList.add('d-none');
+
+            document.querySelector('#selectParamTa').click();
+            document.querySelector('#selectParamTb').click();
+            document.querySelector('#selectParamQa').classList.add('d-none');
+            document.querySelector('#selectParamQb').classList.add('d-none');
+            document.querySelector('#selectParamTinfA').classList.add('d-none');
+            document.querySelector('#selectParamTinfB').classList.add('d-none');
+
+        } else {
+            document.querySelector('.paramS').classList.remove('d-none');
+            document.querySelector('.paramN').classList.remove('d-none');
+
+            document.querySelector('#selectParamQa').classList.remove('d-none');
+            document.querySelector('#selectParamQb').classList.remove('d-none');
+            document.querySelector('#selectParamTinfA').classList.remove('d-none');
+            document.querySelector('#selectParamTinfB').classList.remove('d-none');
+
+            document.querySelector('.paramSc').classList.add('d-none');
+            document.querySelector('.paramSp').classList.add('d-none');
         }
     }));
 
@@ -198,7 +337,8 @@ class PQMethod {
     T;
     Ta; Tb;
     qa; qb;
-    h; Tinf;
+    h; TinfA; TinfB;
+    Sc; Sp;
     constructor(N, k, S, L) {
         this.a = new Array(N);
         this.b = new Array(N);
@@ -229,10 +369,10 @@ class PQMethod {
             this.a[0] = 1;
             this.d[0] = this.Ta;
         } else {
-            if (!((this.h === undefined) && (this.Tinf === undefined))) {
+            if (!((this.h === undefined) && (this.TinfA === undefined))) {
                 this.a[0] = this.k + this.h;
                 this.b[0] = this.k;
-                this.d[0] = this.h * this.Tinf - this.S * this.dx / 2;
+                this.d[0] = this.h * this.TinfA + (this.S * this.dx) / 2;
             } else {
                 if (!(this.qa === undefined)) {
                     this.a[0] = this.k;
@@ -246,10 +386,10 @@ class PQMethod {
             this.a[this.N-1] = 1;
             this.d[this.N-1] = this.Tb;
         } else {
-            if (!((this.h === undefined) && (this.Tinf === undefined))) {
+            if (!((this.h === undefined) && (this.TinfB === undefined))) {
                 this.a[this.N-1] = this.k + this.h;
                 this.c[this.N-1] = this.k;
-                this.d[this.N-1] = this.S * this.dx / 2 + this.h * this.Tinf;
+                this.d[this.N-1] = (this.S * this.dx) / 2 + this.h * this.TinfB;
             } else {
                 if (!(this.qb === undefined)) {
                     this.a[this.N-1] = this.k;
@@ -260,10 +400,17 @@ class PQMethod {
         }
 
         for (let i = 1; i < this.N - 1; i++) {
-            this.a[i] = (2 * this.k) / this.dx;
-            this.b[i] = this.k / this.dx;
-            this.c[i] = this.k / this.dx;
-            this.d[i] = this.S * this.dx;
+            if ((this.Sc === undefined) && (this.Sp === undefined)) {
+                this.a[i] = (2 * this.k) / this.dx;
+                this.b[i] = this.k / this.dx;
+                this.c[i] = this.k / this.dx;
+                this.d[i] = this.S * this.dx;
+            } else {
+                this.a[i] = this.k + this.k - this.Sp;
+                this.b[i] = this.k;
+                this.c[i] = this.k;
+                this.d[i] = this.Sc;
+            }
         }
 
     }
