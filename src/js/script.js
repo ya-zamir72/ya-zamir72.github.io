@@ -3,7 +3,7 @@ window.onload = function () {
     document.querySelector('.js-run').addEventListener('click', event => {
         const paramA = parseFloat(document.querySelector('#paramA').value);
         const paramB = parseFloat(document.querySelector('#paramB').value);
-        let paramN = parseFloat(document.querySelector('#paramN').value);
+        const paramN = parseFloat(document.querySelector('#paramN').value);
         const paramL = parseFloat(document.querySelector('#paramL').value);
         const paramS = parseFloat(document.querySelector('#paramS').value);
         const paramK = parseFloat(document.querySelector('#paramK').value);
@@ -17,12 +17,6 @@ window.onload = function () {
         if (isNaN(paramB)) { document.querySelector('#paramB').classList.add('error-input'); check = true; } else document.querySelector('#paramB').closest('div').classList.remove('error-input');
         if (isNaN(paramL)) { document.querySelector('#paramL').classList.add('error-input'); check = true; } else document.querySelector('#paramL').closest('div').classList.remove('error-input');
         if (isNaN(paramK)) { document.querySelector('#paramK').classList.add('error-input'); check = true; } else document.querySelector('#paramK').closest('div').classList.remove('error-input');
-
-        console.log(paramSType);
-
-        if (paramSType === 'selectParamSFunc') {
-            paramN = 6;
-        }
 
         let pqMethod = new PQMethod(paramN, paramK, paramS, paramL);
 
