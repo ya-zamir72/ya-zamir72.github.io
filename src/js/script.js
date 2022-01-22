@@ -254,6 +254,7 @@ window.onload = function () {
         document.querySelector('#paramSc').value = 2000;
         document.querySelector('#paramSp').value = -100;
         document.querySelector('#paramK').value = 120;
+        document.querySelector('#paramN').value = 3;
 
         document.querySelector('#selectParamSFunc').click();
         document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
@@ -295,7 +296,7 @@ window.onload = function () {
             document.querySelector('.paramSp').classList.remove('d-none');
 
             document.querySelector('.paramS').classList.add('d-none');
-            document.querySelector('.paramN').classList.add('d-none');
+            // document.querySelector('.paramN').classList.add('d-none');
 
             document.querySelector('#selectParamTa').click();
             document.querySelector('#selectParamTb').click();
@@ -306,7 +307,7 @@ window.onload = function () {
 
         } else {
             document.querySelector('.paramS').classList.remove('d-none');
-            document.querySelector('.paramN').classList.remove('d-none');
+            // document.querySelector('.paramN').classList.remove('d-none');
 
             document.querySelector('#selectParamQa').classList.remove('d-none');
             document.querySelector('#selectParamQb').classList.remove('d-none');
@@ -400,10 +401,10 @@ class PQMethod {
                 this.c[i] = this.k / this.dx;
                 this.d[i] = this.S * this.dx;
             } else {
-                this.a[i] = this.k + this.k - this.Sp;
-                this.b[i] = this.k;
-                this.c[i] = this.k;
-                this.d[i] = this.Sc;
+                this.a[i] = this.k / this.dx + this.k / this.dx - this.Sp * this.dx;
+                this.b[i] = this.k / this.dx;
+                this.c[i] = this.k / this.dx;
+                this.d[i] = this.Sc * this.dx;
             }
         }
 
