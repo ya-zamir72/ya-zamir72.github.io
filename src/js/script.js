@@ -365,9 +365,9 @@ class PQMethod {
             this.d[0] = this.Ta;
         } else {
             if (!((this.h === undefined) && (this.TinfA === undefined))) {
-                this.a[0] = this.k + this.h;
+                this.a[0] = this.k + this.h * this.dx;
                 this.b[0] = this.k;
-                this.d[0] = this.h * this.TinfA + (this.S * this.dx) / 2;
+                this.d[0] = this.h * this.TinfA * this.dx + (this.S * this.dx ** 2) / 2;
             } else {
                 if (!(this.qa === undefined)) {
                     this.a[0] = this.k;
@@ -382,9 +382,9 @@ class PQMethod {
             this.d[this.N-1] = this.Tb;
         } else {
             if (!((this.h === undefined) && (this.TinfB === undefined))) {
-                this.a[this.N-1] = this.k + this.h;
+                this.a[this.N-1] = this.k + this.h * this.dx;
                 this.c[this.N-1] = this.k;
-                this.d[this.N-1] = (this.S * this.dx) / 2 + this.h * this.TinfB;
+                this.d[this.N-1] = (this.S * this.dx ** 2) / 2 + this.h * this.TinfB * this.dx;
             } else {
                 if (!(this.qb === undefined)) {
                     this.a[this.N-1] = this.k;
