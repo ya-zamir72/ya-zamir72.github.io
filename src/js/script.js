@@ -258,7 +258,25 @@ window.onload = function () {
 
         document.querySelector('#selectParamSFunc').click();
         document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
+        document.querySelector('#selectParamTa').click();
+        document.querySelector('#selectParamTb').click();
+    });
 
+    document.querySelector('.js-example7').addEventListener('click', event => {
+        document.querySelector('#selectParamSFunc').click();
+        document.querySelector('#selectParamQa').click();
+        document.querySelector('#selectParamTinfB').click();
+
+        document.querySelector('#paramA').value = 15;
+        document.querySelector('#paramB').value = 30;
+        document.querySelector('#paramL').value = 6;
+        document.querySelector('#paramSc').value = 30;
+        document.querySelector('#paramSp').value = -2;
+        document.querySelector('#paramK').value = 2.5;
+        document.querySelector('#paramN').value = 3;
+        document.querySelector('#paramH').value = 5;
+
+        document.querySelectorAll('input').forEach(elem => elem.classList.remove('error-input'));
     });
 
     document.querySelectorAll('.js-paramSelectorA li a').forEach(elem => elem.addEventListener('click', event => {
@@ -300,19 +318,19 @@ window.onload = function () {
 
             document.querySelector('#selectParamTa').click();
             document.querySelector('#selectParamTb').click();
-            document.querySelector('#selectParamQa').classList.add('d-none');
+            // document.querySelector('#selectParamQa').classList.add('d-none');
             document.querySelector('#selectParamQb').classList.add('d-none');
             document.querySelector('#selectParamTinfA').classList.add('d-none');
-            document.querySelector('#selectParamTinfB').classList.add('d-none');
+            // document.querySelector('#selectParamTinfB').classList.add('d-none');
 
         } else {
             document.querySelector('.paramS').classList.remove('d-none');
             // document.querySelector('.paramN').classList.remove('d-none');
 
-            document.querySelector('#selectParamQa').classList.remove('d-none');
+            // document.querySelector('#selectParamQa').classList.remove('d-none');
             document.querySelector('#selectParamQb').classList.remove('d-none');
             document.querySelector('#selectParamTinfA').classList.remove('d-none');
-            document.querySelector('#selectParamTinfB').classList.remove('d-none');
+            // document.querySelector('#selectParamTinfB').classList.remove('d-none');
 
             document.querySelector('.paramSc').classList.add('d-none');
             document.querySelector('.paramSp').classList.add('d-none');
@@ -364,15 +382,23 @@ class PQMethod {
             this.a[0] = 1;
             this.d[0] = this.Ta;
         } else {
-            if (!((this.h === undefined) && (this.TinfA === undefined))) {
-                this.a[0] = this.k + this.h * this.dx;
-                this.b[0] = this.k;
-                this.d[0] = this.h * this.TinfA * this.dx + (this.S * this.dx ** 2) / 2;
+            if (!(this.TinfA === undefined)) {
+                if ((this.Sc === undefined) && (this.Sp === undefined)) {
+                    this.a[0] = this.k + this.h * this.dx;
+                    this.b[0] = this.k;
+                    this.d[0] = this.h * this.TinfA * this.dx + (this.S * this.dx ** 2) / 2;
+                }
             } else {
                 if (!(this.qa === undefined)) {
-                    this.a[0] = this.k;
-                    this.b[0] = this.k;
-                    this.d[0] = this.qa * this.dx + this.S * Math.pow(this.dx, 2) / 2;
+                    if ((this.Sc === undefined) && (this.Sp === undefined)) {
+                        this.a[0] = this.k;
+                        this.b[0] = this.k;
+                        this.d[0] = this.qa * this.dx + this.S * Math.pow(this.dx, 2) / 2;
+                    } else {
+                        this.a[0] = this.k / this.dx - (this.Sp * this.dx) / 2;
+                        this.b[0] = this.k / this.dx;
+                        this.d[0] = this.Sc * this.dx / 2 + this.qa;
+                    }
                 }
             }
         }
@@ -381,15 +407,23 @@ class PQMethod {
             this.a[this.N-1] = 1;
             this.d[this.N-1] = this.Tb;
         } else {
-            if (!((this.h === undefined) && (this.TinfB === undefined))) {
-                this.a[this.N-1] = this.k + this.h * this.dx;
-                this.c[this.N-1] = this.k;
-                this.d[this.N-1] = (this.S * this.dx ** 2) / 2 + this.h * this.TinfB * this.dx;
+            if (!(this.TinfB === undefined)) {
+                if ((this.Sc === undefined) && (this.Sp === undefined)) {
+                    this.a[this.N - 1] = this.k + this.h * this.dx;
+                    this.c[this.N - 1] = this.k;
+                    this.d[this.N - 1] = (this.S * this.dx ** 2) / 2 + this.h * this.TinfB * this.dx;
+                } else {
+                    this.a[this.N - 1] = this.k / this.dx + this.h - (this.Sp * this.dx) / 2;
+                    this.c[this.N - 1] = this.k / this.dx;
+                    this.d[this.N - 1] = this.Sc * this.dx / 2 + this.h * this.TinfB;
+                }
             } else {
                 if (!(this.qb === undefined)) {
-                    this.a[this.N-1] = this.k;
-                    this.c[this.N-1] = this.k;
-                    this.d[this.N-1] = this.S * Math.pow(this.dx, 2) / 2 - this.qb * this.dx;
+                    if ((this.Sc === undefined) && (this.Sp === undefined)) {
+                        this.a[this.N-1] = this.k;
+                        this.c[this.N-1] = this.k;
+                        this.d[this.N-1] = this.S * Math.pow(this.dx, 2) / 2 - this.qb * this.dx;
+                    }
                 }
             }
         }
